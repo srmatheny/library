@@ -113,8 +113,8 @@ class Library {
         this.books.push(newBook);
     }
 
-    removeBook(title) {
-        this.books = this.books.filter(book => book.title !== title);
+    removeBook(id) {
+        this.books = this.books.filter(book => book.id !== id);
     }
 
     displayBooks() {
@@ -130,6 +130,7 @@ class Library {
         let index = 0;
         this.books.forEach(book => {
         
+            //create card for each book section
             const librarySection = document.querySelector(".card-section");
 
             const card = document.createElement("div");
@@ -139,9 +140,35 @@ class Library {
             const para = document.createElement("p");
             para.textContent = (this.books[index].info());
             card.appendChild(para);
+            //end card section creation
+
+            //create remove button - add class attribute
+            const removeBookButton = document.createElement("button");
+            removeBookButton.classList.add("remove-book-button")
+            removeBookButton.textContent = "Delete";
+
+            //removeBookButton.dataset.linkedID = book.id;
+            console.log(book.id);
+            card.appendChild(removeBookButton);
+
+            removeBookButton.addEventListener("click", removeItem);
+
+            function removeItem() {
+                console.log("Made it t othe function");
+                console.log(book.id);
+                myLibrary.removeBook(book.id);
+                card.remove();
+                myLibrary.displayBooks();
+            };
+            //end remove button and card section
+
+            //create toggle read status button section
+            
 
             index++;
         });
+        
+        //start listener, call remove book
 
     }
 

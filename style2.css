@@ -55,13 +55,15 @@
     text-align: center;
     height: 250px;
     display: grid;
+    
     border-left: 10px solid blue;
+    border-radius: 5px;
 }
 
 .card p {
     border-bottom: 2px solid lightblue;
     margin-top: 15px;
-
+    border-radius: 10px;
 }
 
 .new-book {
@@ -83,6 +85,16 @@
     border-radius: 5px;
     width: 100px;
 }
+
+
+.remove-book-button {
+    grid-row: 5/6;
+    font-weight: 900;
+    background-color: rebeccapurple;
+    border-radius: 10px;
+}
+
+
 
 .modal {
     display: none;
@@ -131,6 +143,5 @@
     text-decoration: none;
     cursor: pointer;
 }
-
 
 
