@@ -1,12 +1,12 @@
 
 
-let newBookButton = document.querySelector("#new-book-button");
+// let newBookButton = document.querySelector("#new-book-button");
 
-newBookButton.addEventListener("click", function() {
-    //alert("Hello world");
-    let newBookForm = document.querySelector("#new-book-form");
-    newBookForm.style.display = "";
-});
+// newBookButton.addEventListener("click", function() {
+//     //alert("Hello world");
+//     let newBookForm = document.querySelector("#new-book-form");
+//     newBookForm.style.display = "";
+// });
 
 //document.querySelector("#new-book-form").addEventListener("submit", getData);
 
@@ -94,6 +94,7 @@ class Book {
 
     toggleReadStatus() {
         this.read = !this.read;
+
     }
 
     info() {
@@ -102,6 +103,9 @@ class Book {
 
 }
 
+Book.prototype.toggleReadStatus = function() {
+    this.read = !this.read;
+}
 
 class Library {
 
@@ -148,14 +152,14 @@ class Library {
             removeBookButton.textContent = "Delete";
 
             //removeBookButton.dataset.linkedID = book.id;
-            console.log(book.id);
+            //console.log(book.id);
             card.appendChild(removeBookButton);
 
             removeBookButton.addEventListener("click", removeItem);
 
             function removeItem() {
                 console.log("Made it t othe function");
-                console.log(book.id);
+                //console.log(book.id);
                 myLibrary.removeBook(book.id);
                 card.remove();
                 myLibrary.displayBooks();
@@ -163,7 +167,29 @@ class Library {
             //end remove button and card section
 
             //create toggle read status button section
-            
+            const toggleButton = document.createElement("button");
+            toggleButton.classList.add("toggle-button");
+            toggleButton.textContent = "Toggle Read Status";
+
+            toggleButton.dataset.linkedArray = index;
+            card.appendChild(toggleButton);
+
+            toggleButton.addEventListener("click", (event) => {
+                let bookToToggle = toggleButton.dataset.linkedArray;
+                //Book.prototype = Object.create(Book.prototype);
+                const toggleBook = new Book();
+
+                if (event.target.classList.contains("toggle-button")) {
+                    const bookIndex = event.target.dataset.linkedArray;
+                    //console.log(linkedArray);
+                    myLibrary[bookIndex].toggleReadStatus();
+                   //this.books.bookIndex.toggleReadStatus;
+                    this.displayBooks();
+                };
+            });
+
+
+
 
             index++;
         });
