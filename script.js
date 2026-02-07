@@ -34,6 +34,27 @@ window.addEventListener('click', (event) => {
     }
 });
 
+
+const authorField = document.getElementById("author");
+ 
+authorField.addEventListener('invalid', () => {
+   authorField.setCustomValidity('I am expecting an AUTHOR of the book!!!(e.g., a real name)');
+ });
+authorField.addEventListener('input', () => {
+    authorField.setCustomValidity('');
+});
+
+const titleField = document.getElementById("title");
+ 
+titleField.addEventListener('invalid', () => {
+   titleField.setCustomValidity('I am expecting a TITLE of the book!!!(e.g., a real name)');
+ });
+titleField.addEventListener('input', () => {
+    titleField.setCustomValidity('');
+});
+
+
+
 dataForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
